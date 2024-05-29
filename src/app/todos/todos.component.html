@@ -1,0 +1,26 @@
+<!--Tasks -->
+<section class="task-header">
+  <h1> Tasks </h1>
+
+  <button (click)="openDialog()" color="primary" mat-mini-fab>
+    <mat-icon>add</mat-icon>
+  </button>
+</section>
+
+<mat-selection-list #shoes>
+  @for (todo of todoList(); track todo.id) {
+    <div class="todo-item">
+      <mat-list-option color="primary" [selected]="todo.completed">
+        <span matListItemTitle>{{ todo.title }}</span>
+        <span matListItemLine>{{ todo.description }} </span>
+      </mat-list-option>
+
+      <button (click)="onEdit()" mat-icon-button color="accent">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn">
+        <mat-icon class="delete-icon">delete</mat-icon>
+      </button>
+    </div>
+  }
+</mat-selection-list>

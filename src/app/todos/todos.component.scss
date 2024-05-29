@@ -1,0 +1,35 @@
+:host {
+  height: 100dvh;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 50rem;
+  width: 100%;
+}
+
+.task-header button:hover {
+  transform: rotate(180deg);
+}
+
+mat-selection-list {
+  width: 100%;
+  max-width: 50rem;
+
+}
+
+mat-selection-list .todo-item {
+  display: flex;
+  align-items: center;
+
+}
+
+

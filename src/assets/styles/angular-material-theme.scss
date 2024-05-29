@@ -1,0 +1,90 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '../../../node_modules/@angular/material/index' as mat;
+
+@include mat.core();
+
+$custom-lime-palette: (
+  50: #f7fee7,
+  100: #ecfccb,
+  200: #d9f99d,
+  300: #bef264,
+  400: #a3e635,
+  500: #84cc16,
+  600: #65a30d,
+  700: #4d7c0f,
+  800: #3f6212,
+  900: #365314,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    // ... continues to 900
+  )
+);
+
+$custom-typography: mat.define-typography-config(
+  $font-family: 'Maiandra GD',
+);
+
+// custom background and foreground palettes
+$my-dark-theme-background: (
+  status-bar: ($custom-lime-palette, A400),
+  app-bar: var(--black-100),
+  background: var(--black-300),
+  hover: var(--black-300),
+  card: var(--black-100),
+  dialog: var(--black-300),
+  disabled-button: var(--white),
+  raised-button: var(--black-100),
+  focused-button: var(--white),
+  selected-button: var(--black-100),
+  selected-disabled-button: var(--black-100),
+  disabled-button-toggle: var(--black-100),
+  unselected-chip: var(--black-100),
+  disabled-list-option: var(--black-100),
+  form-field: var(--black-100),
+);
+
+$my-dark-theme-foreground: (
+  base: var(--base),
+  divider:var(--white),
+  dividers:var(--white),
+  disabled: rgba(var(--white), 0.3),
+  disabled-button: rgba(var(--white), 0.3),
+  disabled-text: rgba(var(--white), 0.3),
+  hint-text: (var(--white), 0.9),
+  secondary-text: rgba(var(--white), 0.7),
+  icon: var(--white),
+  icons: var(--white),
+  text: var(--white),
+  slider-min: var(--white),
+  slider-off: rgba(var(--white), 0.3),
+  slider-off-active: rgba(var(--white), 0.3),
+);
+
+@function create-theme($primary, $accent, $warn: mat.define-palette(mat.$red-palette)) {
+  @return (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+      foreground: $my-dark-theme-foreground,
+      background: $my-dark-theme-background,
+    ),
+    typography: $custom-typography,
+    density: (
+      scale: -5
+    )
+  );
+}
+
+
+$angular-material-3-primary: mat.define-palette($custom-lime-palette);
+$angular-material-3-accent: mat.define-palette(mat.$blue-grey-palette);
+
+
+$dark-theme: create-theme($angular-material-3-primary, $angular-material-3-accent);
+
+@include mat.all-component-themes($dark-theme);
