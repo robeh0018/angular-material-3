@@ -24,17 +24,17 @@ $custom-lime-palette: (
   )
 );
 
-$custom-typography: mat.define-typography-config(
+$custom-typography: mat.m2-define-typography-config(
   $font-family: 'Maiandra GD',
 );
 
 // custom background and foreground palettes
 $my-dark-theme-background: (
   status-bar: ($custom-lime-palette, A400),
-  app-bar: var(--black-100),
+  app-bar: var(--black-300),
   background: var(--black-300),
   hover: var(--black-300),
-  card: var(--black-100),
+  card: var(--black-200),
   dialog: var(--black-300),
   disabled-button: var(--white),
   raised-button: var(--black-100),
@@ -64,14 +64,14 @@ $my-dark-theme-foreground: (
   slider-off-active: rgba(var(--white), 0.3),
 );
 
-@function create-theme($primary, $accent, $warn: mat.define-palette(mat.$red-palette)) {
+@function create-theme($primary, $accent, $warn: mat.m2-define-palette(mat.$m2-red-palette)) {
   @return (
     color: (
       primary: $primary,
       accent: $accent,
       warn: $warn,
       foreground: $my-dark-theme-foreground,
-      background: $my-dark-theme-background,
+        background: $my-dark-theme-background,
     ),
     typography: $custom-typography,
     density: (
@@ -81,10 +81,15 @@ $my-dark-theme-foreground: (
 }
 
 
-$angular-material-3-primary: mat.define-palette($custom-lime-palette);
-$angular-material-3-accent: mat.define-palette(mat.$blue-grey-palette);
+$angular-material-3-primary: mat.m2-define-palette($custom-lime-palette);
+$angular-material-3-accent: mat.m2-define-palette(mat.$m2-blue-grey-palette);
 
 
 $dark-theme: create-theme($angular-material-3-primary, $angular-material-3-accent);
 
 @include mat.all-component-themes($dark-theme);
+
+
+.text-accent {
+  color: mat.get-theme-color($dark-theme, accent, 800) !important;
+}
